@@ -25,7 +25,8 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     console.log(req.params.id)
     await User.findById(req.params.id)
-        // .populate({ path: "thoughts" })
+        .populate({ path: "friends" })
+        .populate({ path: "thoughts" })
             .then((user) => {
                 res.json(user)
     })
@@ -60,4 +61,7 @@ router.delete("/:userId/friends/:friendId", async (req, res) => {
     })
 })
 //goal next time is to get not just id in friends array but get all users info
+
+
+
 module.exports = router

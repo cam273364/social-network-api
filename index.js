@@ -6,6 +6,9 @@ require('dotenv').config()
 const dburl = process.env.mongoURL
 const mongoose = require('mongoose')
 mongoose.connect(dburl)
+const thoughtRoutes = require("./api/thoughts")
+
+
 
 app.use(express.json());
 app.get('/', (req, res) => {
@@ -13,7 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.use("/api/users", userRoutes)
-
+app.use("/api/thoughts", thoughtRoutes)
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
